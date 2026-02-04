@@ -12,7 +12,6 @@
             --bg: #0a0a0a;
             --fg: #e5e5e5;
             --fg-muted: #737373;
-            --accent: #c4a35a;
         }
         
         * {
@@ -28,35 +27,25 @@
             font-weight: 300;
             line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 0 24px;
-            width: 100%;
         }
         
         /* Nav */
         .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
             padding: 24px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            z-index: 100;
         }
         
         .nav a {
             color: var(--fg-muted);
             text-decoration: none;
             font-size: 0.85rem;
-            transition: color 0.2s;
         }
         
         .nav a:hover {
@@ -69,8 +58,7 @@
         
         /* Header */
         header {
-            padding: 120px 0 60px;
-            border-bottom: 1px solid #1a1a1a;
+            padding: 40px 0 60px;
         }
         
         header h1 {
@@ -78,37 +66,19 @@
             font-size: 2rem;
             font-weight: 400;
             margin-bottom: 16px;
-            letter-spacing: -0.02em;
         }
         
-        header p {
-            color: var(--fg-muted);
-            font-size: 1rem;
-            max-width: 600px;
-        }
-        
-        /* Projects */
+        /* Project sections */
         .project {
-            padding: 80px 0;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        
-        .project:last-child {
-            border-bottom: none;
+            padding: 40px 0;
+            border-top: 1px solid #1a1a1a;
         }
         
         .project h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 400;
-            margin-bottom: 12px;
-        }
-        
-        .project .year {
-            font-size: 0.85rem;
-            color: var(--fg-muted);
-            margin-bottom: 24px;
-            display: block;
+            margin-bottom: 20px;
         }
         
         .project p {
@@ -118,50 +88,19 @@
             margin-bottom: 16px;
         }
         
-        .project .details {
-            margin-top: 24px;
-        }
-        
-        .project .details li {
-            color: var(--fg-muted);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            list-style: none;
-            position: relative;
-            padding-left: 16px;
-        }
-        
-        .project .details li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--fg-muted);
-            opacity: 0.5;
-        }
-        
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 32px;
-        }
-        
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border: 1px solid #1a1a1a;
-        }
-        
-        .gallery img:first-child {
-            grid-column: 1 / -1;
-        }
-        
-        .photo-credit {
-            font-size: 0.75rem;
+        .project .credit {
+            font-size: 0.8rem;
             color: var(--fg-muted);
             margin-top: 8px;
-            opacity: 0.6;
+            font-style: italic;
+        }
+        
+        /* Images */
+        .project img {
+            width: 100%;
+            height: auto;
+            margin-top: 24px;
+            display: block;
         }
         
         /* Back link */
@@ -173,27 +112,10 @@
         .back a {
             color: var(--fg-muted);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
         }
         
         .back a:hover {
             color: var(--fg);
-        }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            header {
-                padding: 100px 0 48px;
-            }
-            
-            header h1 {
-                font-size: 1.75rem;
-            }
-            
-            .project {
-                padding: 60px 0;
-            }
         }
     </style>
 </head>
@@ -205,70 +127,47 @@
     
     <main class="container">
         <header>
-            <h1>Art & Installation</h1>
-            <p>Large-scale projects built in the desert. Teams of volunteers, multi-year timelines, and structures that were always meant to burn.</p>
+            <h1>Art Portfolio</h1>
+            <p>This portfolio includes photos of my notable work as a lead on teams of 20–200, helping to dream up and create large-scale immersive art installations for the Burning Man Project. These were some of the most ambitious installations in the event's history, and have been featured in major publications such as Business Insider, Rolling Stone, CNN, Vice, and Smithsonian Magazine.</p>
+            <p>My artistic contributions included all mediums necessary to actualize these projects: design, carpentry, metalwork, pyrotechnics, lighting, and more—from conception to completion. Project builds typically consisted of 8 months of full-time work: 7 months constructing the modular components in town, and one month building onsite in the harsh conditions of the Black Rock Desert.</p>
+            <p>Through my art, I strive to create environments to immerse the audience in dreams-made-real, evoking a childlike sense of wonder and inviting reflection on themes of joy, grief, and the power of relationships. I believe that art has the power to transform and uplift, to challenge and inspire, and to connect us all in ways that transcend language and culture. My primary artistic influences are Buddhism and Eastern philosophy more broadly, as well as traditional art and architecture from around the world.</p>
         </header>
         
-        <article class="project">
-            <h2>Temple of Transition</h2>
-            <span class="year">2011</span>
-            <p>A 120-foot tall structure of six outer temples surrounding a central tower, connected by intricate wooden bridges. Inspired by ancient cathedrals and Hindu temples. For two weeks, it held the world record for the largest temporary wooden structure.</p>
-            <p>Participants left messages, mementos, and offerings symbolizing grief and loss. On the final night, the temple burned in a ceremony of collective catharsis. The work was featured in Business Insider, Rolling Stone, CNN, Vice, and Smithsonian Magazine.</p>
-            <ul class="details">
-                <li>Lead on a team of 200+ volunteers across 8 months</li>
-                <li>Design, carpentry, metalwork, pyrotechnics, lighting</li>
-                <li>Seven months modular construction, one month desert build</li>
-                <li>Buddhist and Eastern philosophical influences throughout</li>
-            </ul>
-            <div class="gallery">
-                <img src="/images/1.jpg" alt="Temple of Transition">
-                <img src="/images/2.jpg" alt="Temple of Transition">
-                <img src="/images/3.jpg" alt="Temple of Transition">
-                <img src="/images/4.jpg" alt="Temple of Transition">
-                <img src="/images/5.jpg" alt="Temple of Transition">
-                <img src="/images/6.jpg" alt="Temple of Transition">
-                <img src="/images/7.jpg" alt="Temple of Transition">
-            </div>
-            <p class="photo-credit">Photos: Bentley Meeker, Scott London</p>
-        </article>
+        <section class="project">
+            <h2>The Temple of Transition, 2011</h2>
+            <p>International Arts Megacrew. The Temple of Transition was 120-ft tall structure consisting of six outer temples surrounding a central temple, connected by intricate wooden bridges, with a design inspired by ancient cathedrals and Hindu temples. Participants left messages, mementos, and offerings symbolizing grief and loss. On the final night, the temple was solemnly and silently burned in a ceremony of collective catharsis. For two weeks, the temple held the world record for the largest temporary wooden structure.</p>
+            <img src="/images/1.jpg" alt="Temple of Transition">
+            <p class="credit">Image credit: Bentley Meeker, 2011</p>
+            <img src="/images/2.jpg" alt="Temple of Transition">
+            <img src="/images/3.jpg" alt="Temple of Transition">
+            <img src="/images/4.jpg" alt="Temple of Transition">
+            <img src="/images/5.jpg" alt="Temple of Transition">
+            <img src="/images/6.jpg" alt="Temple of Transition">
+            <img src="/images/7.jpg" alt="Temple of Transition">
+            <p class="credit">Image credit: Scott London</p>
+        </section>
         
-        <article class="project">
-            <h2>Embrace</h2>
-            <span class="year">2014</span>
-            <p>Two wooden figures holding each other, built to be climbed inside. A space for intimacy in the middle of chaos. Six-figure budget, 150-person crew.</p>
-            <ul class="details">
-                <li>Welding and metal fabrication for internal structure</li>
-                <li>Crew leadership and volunteer coordination</li>
-                <li>Heavy equipment operation for installation</li>
-            </ul>
-            <div class="gallery">
-                <img src="/images/8.jpg" alt="Embrace">
-                <img src="/images/9.jpg" alt="Embrace">
-                <img src="/images/10.jpg" alt="Embrace">
-                <img src="/images/11.jpg" alt="Embrace">
-                <img src="/images/12.jpg" alt="Embrace">
-            </div>
-        </article>
+        <section class="project">
+            <h2>Embrace, 2014</h2>
+            <p>The Pier Group. Two wooden figures holding each other, built to be climbed inside. A space for intimacy in the middle of chaos.</p>
+            <img src="/images/8.jpg" alt="Embrace">
+            <img src="/images/9.jpg" alt="Embrace">
+            <img src="/images/10.jpg" alt="Embrace">
+            <img src="/images/11.jpg" alt="Embrace">
+            <img src="/images/12.jpg" alt="Embrace">
+        </section>
         
-        <article class="project">
-            <h2>La Llorona</h2>
-            <span class="year">2015</span>
-            <p>A weeping woman rising from the playa. Mixed-media sculpture combining wood, metal, and LED lighting systems. My last large installation before stepping back from the festival.</p>
-            <ul class="details">
-                <li>Electrical systems for 500+ LED nodes</li>
-                <li>Safety protocols for public interaction</li>
-                <li>Final burn coordination with fire safety teams</li>
-            </ul>
-            <div class="gallery">
-                <img src="/images/13.jpg" alt="La Llorona">
-                <img src="/images/14.jpg" alt="La Llorona">
-                <img src="/images/15.jpg" alt="La Llorona">
-                <img src="/images/16.jpg" alt="La Llorona">
-                <img src="/images/17.jpg" alt="La Llorona">
-                <img src="/images/18.jpg" alt="La Llorona">
-                <img src="/images/19.jpg" alt="La Llorona">
-            </div>
-        </article>
+        <section class="project">
+            <h2>La Llorona, 2015</h2>
+            <p>A weeping woman rising from the playa. Mixed-media sculpture combining wood, metal, and LED lighting systems.</p>
+            <img src="/images/13.jpg" alt="La Llorona">
+            <img src="/images/14.jpg" alt="La Llorona">
+            <img src="/images/15.jpg" alt="La Llorona">
+            <img src="/images/16.jpg" alt="La Llorona">
+            <img src="/images/17.jpg" alt="La Llorona">
+            <img src="/images/18.jpg" alt="La Llorona">
+            <img src="/images/19.jpg" alt="La Llorona">
+        </section>
         
         <div class="back">
             <a href="/">← Back to work</a>
