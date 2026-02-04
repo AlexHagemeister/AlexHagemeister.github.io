@@ -42,6 +42,24 @@
         /* Hero */
         .hero {
             padding: 120px 0 80px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex-shrink: 0;
+        }
+        
+        .hero-image img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .hero h1 {
@@ -93,26 +111,104 @@
             margin-bottom: 0;
         }
         
-        /* Path section */
-        .path-list {
+        #about a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        #about a:hover {
+            border-color: var(--accent);
+        }
+        
+        .links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 48px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .links a {
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px solid var(--fg-muted);
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .links a:hover {
+            border-color: var(--fg);
+        }
+        
+        /* Projects section */
+        .project {
+            margin-bottom: 32px;
+        }
+        
+        .project:last-child {
+            margin-bottom: 0;
+        }
+        
+        .project h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--fg);
+            margin-bottom: 8px;
+        }
+        
+        .project p {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .project a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .project a:hover {
+            border-color: var(--accent);
+        }
+        
+        /* Skills section */
+        #skills p {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        #skills p:last-child {
+            margin-bottom: 0;
+        }
+        
+        #skills strong {
+            color: var(--fg);
+            font-weight: 500;
+        }
+        
+        /* Background section */
+        .background-list {
             list-style: none;
         }
         
-        .path-list li {
+        .background-list li {
             padding: 12px 0;
             border-bottom: 1px solid #1a1a1a;
             color: var(--fg-muted);
             font-size: 0.95rem;
         }
         
-        .path-list li:last-child {
+        .background-list li:last-child {
             border-bottom: none;
-        }
-        
-        /* Now section */
-        .now p {
-            font-size: 1.1rem;
-            color: var(--fg);
         }
         
         /* Contact */
@@ -120,6 +216,13 @@
             padding: 80px 0 120px;
             border-top: 1px solid #1a1a1a;
             text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .contact a {
@@ -166,6 +269,14 @@
         @media (max-width: 600px) {
             .hero {
                 padding: 100px 0 60px;
+                flex-direction: column;
+                gap: 32px;
+                text-align: center;
+            }
+            
+            .hero-image img {
+                width: 140px;
+                height: 140px;
             }
             
             .hero h1 {
@@ -190,35 +301,67 @@
     
     <main class="container">
         <header class="hero">
-            <h1>Alex Hagemeister</h1>
-            <p class="location">San Francisco</p>
-            <p class="tagline">I build things. Most of them interesting, some of them useful.</p>
+            <div class="hero-image">
+                <img src="images/profile.png" alt="Alex Hagemeister">
+            </div>
+            <div class="hero-content">
+                <h1>Alex Hagemeister</h1>
+                <p class="location">San Francisco</p>
+                <p class="tagline">I build things. Most of them interesting, some of them useful.</p>
+            </div>
         </header>
+        
+        <div class="links">
+            <a href="mailto:hagemeister.alex@gmail.com">Email</a>
+            <a href="https://github.com/AlexHagemeister" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/alexhagemeister/" target="_blank">LinkedIn</a>
+            <a href="https://arxiv.org/abs/2410.02680" target="_blank">Research</a>
+        </div>
         
         <section id="about">
             <h2>About</h2>
-            <p>I spent years building large-scale physical systems—temple installations at Burning Man, off-grid infrastructure, touring logistics. Coordinating 60-person crews, managing complex timelines, designing systems that had to work under extreme constraints. The work was about emergent order: getting complex groups to accomplish hard things.</p>
+            <p>I spent years building large-scale physical systems: temple installations at Burning Man, off-grid infrastructure, touring logistics. Coordinating 60-person crews, managing complex timelines, designing systems that had to work under extreme constraints. The work was about emergent order: getting complex groups to accomplish hard things.</p>
             
-            <p>I pivoted to software and machine learning because I updated on substrate. Bits scale better than atoms. The fundamental interest stayed the same—systems architecture, high-leverage coordination, tools that amplify capability. I'm drawn to problems where careful design creates order from complexity.</p>
+            <p>I pivoted to software because bits scale better than atoms. The fundamental interest stayed the same: systems architecture, high-leverage coordination, tools that amplify capability. I'm drawn to problems where careful design creates order from complexity.</p>
             
-            <p>Currently finishing an EECS degree at Berkeley. Recent work includes ML research (co-authored a paper on kernel methods with Prof. Mark van der Laan), education technology (RAG-based AI tutors for Berkeley courses), and automation infrastructure. I care about systems that coordinate complexity, both technical and social.</p>
-            
-            <p>I'm in an early discovery phase with complexity science—game theory, cybernetics, institutional design, multipolar traps. Understanding why certain configurations persist and others collapse. Not just abstract theory: I want to build frameworks that let groups make better collective decisions.</p>
+            <p><strong>B.S. EECS, UC Berkeley, graduating May 2026.</strong> Regents' and Chancellor's Scholarship recipient. Recent work: co-authored ML research paper on kernel ridge regression (<a href="https://arxiv.org/abs/2410.02680" target="_blank">arXiv:2410.02680</a>), lead developer on Berkeley-funded RAG platform for course-specific AI tutors (FastAPI/Docker/Pinecone stack), and automation tools for knowledge work.</p>
         </section>
         
-        <section id="path">
-            <h2>Before Berkeley</h2>
-            <ul class="path-list">
+        <section id="projects">
+            <h2>Selected Work</h2>
+            
+            <div class="project">
+                <h3>Highly Adaptive Ridge</h3>
+                <p>Co-authored ML research paper with Prof. Mark van der Laan. Novel kernel ridge regression method achieving n<sup>-1/3</sup> dimension-free L2 convergence rate. <a href="https://arxiv.org/abs/2410.02680" target="_blank">arXiv:2410.02680</a></p>
+            </div>
+            
+            <div class="project">
+                <h3>SPLAT – AI Course Tutors</h3>
+                <p>Lead developer on Berkeley-funded EdTech platform. Built full-stack RAG system (FastAPI, Docker, Pinecone, OpenAI, LangChain) including document processing pipeline, vector database infrastructure, and interactive frontend for personalized course tutoring.</p>
+            </div>
+            
+            <div class="project">
+                <h3>Energy Monitoring System</h3>
+                <p>Judges' Choice Award at Berkeley T-PREP. Novel whole-home energy monitoring approach using mesh network of smart plugs.</p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <p><strong>Languages:</strong> Python, C++, Java, R, x86/RISC-V Assembly</p>
+            <p><strong>ML/AI:</strong> Scikit-Learn, LangChain, Hugging Face, RAG systems, kernel methods, OpenAI API, vector embeddings</p>
+            <p><strong>Web/Infrastructure:</strong> FastAPI, React, Docker, Firebase, Pinecone, Vercel, Railway</p>
+            <p><strong>Research:</strong> Nonparametric regression, empirical process theory, optimization, regularization</p>
+        </section>
+        
+        <section id="background">
+            <h2>Background</h2>
+            <ul class="background-list">
                 <li>Burning Man installations. Led teams building large-scale art that burned. Four major projects, national media coverage.</li>
                 <li>Off-grid infrastructure. Designed power and water systems for agricultural operations in Northern California.</li>
-                <li>Post-hardcore band. National touring, self-managed logistics and booking.</li>
+                <li>National touring band. Singer/guitarist, self-managed logistics and booking.</li>
                 <li>Sushi chef. Learned precision and speed under pressure.</li>
             </ul>
-        </section>
-        
-        <section class="now">
-            <h2>Now</h2>
-            <p>Finishing EECS at Berkeley, graduating May 2026. Building tools for coordination and knowledge work. Interested in problems at the intersection of ML infrastructure, collective decision-making, and systems that help humans think better together.</p>
         </section>
     </main>
     
