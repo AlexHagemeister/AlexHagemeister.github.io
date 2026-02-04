@@ -139,18 +139,29 @@
             opacity: 0.5;
         }
         
-        /* Image placeholder */
-        .image-placeholder {
-            width: 100%;
-            height: 300px;
-            background: #111;
-            border: 1px solid #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--fg-muted);
-            font-size: 0.85rem;
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
             margin-top: 32px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #1a1a1a;
+        }
+        
+        .gallery img:first-child {
+            grid-column: 1 / -1;
+        }
+        
+        .photo-credit {
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            margin-top: 8px;
+            opacity: 0.6;
         }
         
         /* Back link */
@@ -209,7 +220,16 @@
                 <li>Seven months modular construction, one month desert build</li>
                 <li>Buddhist and Eastern philosophical influences throughout</li>
             </ul>
-            <div class="image-placeholder">[Images: Bentley Meeker, Scott London]</div>
+            <div class="gallery">
+                <img src="/images/1.jpg" alt="Temple of Transition">
+                <img src="/images/2.jpg" alt="Temple of Transition">
+                <img src="/images/3.jpg" alt="Temple of Transition">
+                <img src="/images/4.jpg" alt="Temple of Transition">
+                <img src="/images/5.jpg" alt="Temple of Transition">
+                <img src="/images/6.jpg" alt="Temple of Transition">
+                <img src="/images/7.jpg" alt="Temple of Transition">
+            </div>
+            <p class="photo-credit">Photos: Bentley Meeker, Scott London</p>
         </article>
         
         <article class="project">
@@ -221,7 +241,13 @@
                 <li>Crew leadership and volunteer coordination</li>
                 <li>Heavy equipment operation for installation</li>
             </ul>
-            <div class="image-placeholder">[Image: Embrace figures at night]</div>
+            <div class="gallery">
+                <img src="/images/8.jpg" alt="Embrace">
+                <img src="/images/9.jpg" alt="Embrace">
+                <img src="/images/10.jpg" alt="Embrace">
+                <img src="/images/11.jpg" alt="Embrace">
+                <img src="/images/12.jpg" alt="Embrace">
+            </div>
         </article>
         
         <article class="project">
@@ -233,7 +259,15 @@
                 <li>Safety protocols for public interaction</li>
                 <li>Final burn coordination with fire safety teams</li>
             </ul>
-            <div class="image-placeholder">[Image: La Llorona illuminated]</div>
+            <div class="gallery">
+                <img src="/images/13.jpg" alt="La Llorona">
+                <img src="/images/14.jpg" alt="La Llorona">
+                <img src="/images/15.jpg" alt="La Llorona">
+                <img src="/images/16.jpg" alt="La Llorona">
+                <img src="/images/17.jpg" alt="La Llorona">
+                <img src="/images/18.jpg" alt="La Llorona">
+                <img src="/images/19.jpg" alt="La Llorona">
+            </div>
         </article>
         
         <div class="back">
