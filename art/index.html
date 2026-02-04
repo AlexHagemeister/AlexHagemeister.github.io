@@ -63,7 +63,14 @@
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             font-weight: 400;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        
+        header .intro {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
         }
         
         .project {
@@ -78,25 +85,114 @@
             margin-bottom: 20px;
         }
         
-        .project p {
+        .project h2 .meta {
+            font-weight: 300;
+            font-size: 1rem;
+            color: var(--fg-muted);
+        }
+        
+        .project > p {
             color: var(--fg-muted);
             font-size: 0.95rem;
             line-height: 1.7;
             margin-bottom: 40px;
         }
         
-        .project img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 12px;
+        /* horizontal scroll gallery */
+        .gallery-wrapper {
+            position: relative;
+            margin-bottom: 20px;
         }
         
-        .project .caption {
+        /* fade overlay on right edge */
+        .gallery-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 20px;
+            width: 80px;
+            background: linear-gradient(to right, transparent, var(--bg));
+            pointer-events: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-wrapper:hover::after {
+            opacity: 0.5;
+        }
+        
+        .gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* firefox */
+            -ms-overflow-style: none; /* ie/edge */
+        }
+        
+        /* hide scrollbar completely */
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--fg-muted);
+            font-size: 1.5rem;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.4);
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-wrapper:hover .scroll-hint {
+            opacity: 0.6;
+        }
+        
+        /* hide hint once scrolled */
+        .gallery.scrolled ~ .scroll-hint {
+            opacity: 0;
+        }
+        
+        .gallery-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-item img {
+            height: 300px;
+            width: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .gallery-item .caption {
             font-size: 0.8rem;
             color: var(--fg-muted);
             font-style: italic;
-            margin-bottom: 40px;
+            margin-top: 12px;
+            max-width: 400px;
+        }
+        
+        /* responsive: smaller images on mobile */
+        @media (max-width: 600px) {
+            .gallery-item img {
+                height: 210px;
+            }
         }
         
         .back {
@@ -112,6 +208,75 @@
         .back a:hover {
             color: var(--fg);
         }
+        
+        /* lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 1000;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lightbox .close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: var(--fg);
+            font-size: 2rem;
+            font-weight: 300;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+        
+        .lightbox .close:hover {
+            opacity: 0.7;
+        }
+        
+        .lightbox .caption-lightbox {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        /* cursor hint for gallery images */
+        .gallery-item img {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+        
+        .gallery-item img:hover {
+            opacity: 0.85;
+        }
     </style>
 </head>
 <body>
@@ -122,90 +287,184 @@
     
     <main class="container">
         <header>
-            <h1>Art Portfolio</h1>
+            <h1>Big Art</h1>
+            <p class="intro">These photos document my work designing and building large-scale immersive art installations for the Burning Man Project. These were some of the most ambitious installations in the event's history, featured in Business Insider, Rolling Stone, CNN, Vice, and Smithsonian Magazine.</p>
+            <p class="intro">My contributions spanned all mediums: design, carpentry, metalwork, pyrotechnics, lighting, from conception to completion. Project builds typically took 8 months of full-time work: 7 months constructing modular components in town, one month building onsite in the harsh conditions of the Black Rock Desert.</p>
+            <p class="intro">My favorite builds immerse the audience in dreams-made-real, and engage with themes of joy, grief, the power of relationships, or the places that scare us, in ways that transcend language and culture.</p>
         </header>
         
         <section class="project">
-            <h2>The Temple of Transition, 2011. International Arts Megacrew.</h2>
-            <p>The Temple of Transition was 120-ft tall structure consisting of six outer temples surrounding a central temple, connected by intricate wooden bridges, with a design inspired by ancient cathedrals and Hindu temples. Participants left messages, mementos, and offerings symbolizing grief and loss. On the final night, the temple was solemnly and silently burned in a ceremony of collective catharsis. For two weeks, the temple held the world record for the largest temporary wooden structure.</p>
-            
-            <img src="/images/1.jpg" alt="The Temple of Transition at night">
-            <p class="caption">Image credit: Bentley Meeker, 2011</p>
-            
-            <img src="/images/2.jpg" alt="The Temple of Transition in the dust">
-            <p class="caption">Image credit: Scott London</p>
-            
-            <img src="/images/3.jpg" alt="The Temple of Transition burning">
-            <p class="caption">Image credit: Reuters/Daily Mail</p>
-        </section>
-        
-        <section class="project">
-            <h2>La Llorona Spanish Galleon, 2012. The Pier Group</h2>
-            <p>Full-scale Spanish Galleon ship replica wrecked upon the end of a 200 ft pier. The interior of the ship consisted of myriad rooms and passageways, all fully furnished. The ship's interior was filled with elaborate sculptures and artwork that depicted the legend of La Llorona, along with hammocks, block and tackle, barrels, and other period pieces.</p>
-            
-            <img src="/images/4.jpg" alt="La Llorona Spanish Galleon">
-            <p class="caption">Image credit: Shay Harting, 2012</p>
-            
-            <img src="/images/5.jpg" alt="Self, installing hull ribs holding screws in mouth">
-            <p class="caption">Self, installing hull ribs holding screws in mouth</p>
-            
-            <img src="/images/6.jpg" alt="Crew Photo">
-            <p class="caption">Crew Photo</p>
-            
-            <img src="/images/7.jpg" alt="La Llorona at night">
-            <p class="caption">Image credit: Grant Kaye, Smithsonian Magazine</p>
-        </section>
-        
-        <section class="project">
-            <h2>The Control Tower (flame effects), 2013. International Arts Megacrew</h2>
-            <p>80 ft tall bamboo tower, with an elaborate array of 16 LPG flame cannons (i.e. propane flamethrowers, also known as "poofers") capable of shooting 30 ft fountains of fire. The cannons could be fired by participants from ground level with a console of Nintendo buttons.</p>
-            
-            <img src="/images/8.jpg" alt="The Control Tower">
-            
-            <img src="/images/10.jpg" alt="Flame throwers unleashed">
-            <p class="caption">Flame throwers unleashed</p>
-        </section>
-        
-        <section class="project">
-            <h2>Embrace, 2014. The Pier Group.</h2>
-            <p>A pair of towering wooden sculptures depicting two human forms in an embrace, complete with mechanical beating hearts, inviting the audience to contemplate the beauty of the human form and the power of connection. The sculptures were over 70 feet tall, each with five floors and spiral staircases up into the heads, where the audience could look out through the eyes upon the desert. The structures were then burned, symbolizing the precious yet precarious nature of relationships.</p>
-            
-            <img src="/images/11.jpg" alt="Crew photo">
-            <p class="caption">Crew photo (I'm on the far left looking frazzled due to having scrambled down from a boom lift for photo)</p>
-            
-            <img src="/images/12.jpg" alt="Embrace sculptures">
-            <p class="caption">Self, unraveling blueprints. Image credit: The Dusty Fish</p>
-            
-            <img src="/images/13.jpg" alt="View inside the head, 70 feet in the air">
-            <p class="caption">View inside the head, 70 feet in the air. Image credit: Galen Oakes</p>
-            
-            <img src="/images/14.jpg" alt="Burn">
-            <p class="caption">Burn. Image credit: Art Gimbel</p>
-        </section>
-        
-        <section class="project">
-            <h2>The Mazu Temple, 2015. The Dream Community.</h2>
+            <h2>The Mazu Temple <span class="meta">· 2015 · The Dream Community</span></h2>
             <p>A temple inspired by the traditional Chinese temples dedicated to the goddess Mazu, built from intricately carved wooden panels, with a 20 ft diameter lotus flower and eight fire-breathing dragons on top. The interior was filled with ornate sculptures, altars, and offerings, and was designed to be a peaceful and contemplative space for festival-goers to reflect and connect. On the final night the temple was burned, symbolizing the release of negative energy and the renewal of the spirit. A primary contribution of mine was the lotus atop the temple, which proved a far greater technical challenge than anticipated.</p>
             
-            <img src="/images/15.jpg" alt="Main entrance at night">
-            <p class="caption">Main entrance at night. Image credit: Wobserazzi</p>
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="/images/15.jpg" alt="Main entrance at night">
+                        <p class="caption">Main entrance at night. Image credit: Wobserazzi</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/16.jpg" alt="Lotus petals up close">
+                        <p class="caption">Lotus petals up close. Image credit: Aleksey Bochovsky</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/17.jpg" alt="Dragons pictured at ground level.">
+                        <p class="caption">Dragons pictured at ground level, complete with plumbing for flame throwers. Image credit: Aleksey Bochovsky</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/18.jpg" alt="Main entrance at night">
+                        <p class="caption">Self. Walking a giraffe? Nay, controlling tagline for the crane lift of the completed lotus during build. Image credit: Aleksey Bochovsky</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/19.jpg" alt="Finishing the final lotus petal">
+                        <p class="caption">Burn ceremony. Image credit: Wobserazzi</p>
+                    </div>
+                </div>
+                <div class="scroll-hint">→</div>
+            </div>
+        </section>
+        
+        <section class="project">
+            <h2>Embrace <span class="meta">· 2014 · The Pier Group</span></h2>
+            <p>A pair of towering wooden sculptures depicting two human forms in an embrace, complete with mechanical beating hearts, inviting the audience to contemplate the beauty of the human form and the power of connection. The sculptures were over 70 feet tall, each with five floors and spiral staircases up into the heads, where the audience could look out through the eyes upon the desert.</p>
             
-            <img src="/images/16.jpg" alt="Lotus petals up close">
-            <p class="caption">Lotus petals up close. Image credit: Aleksey Bochovsky</p>
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="/images/11.jpg" alt="Crew photo">
+                        <p class="caption">Crew photo (I'm on the far left looking frazzled due to having scrambled down from a boom lift for photo)</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/12.jpg" alt="Embrace sculptures">
+                        <p class="caption">Self, unraveling blueprints. Image credit: The Dusty Fish</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/13.jpg" alt="View inside the head, 70 feet in the air">
+                        <p class="caption">View inside the head, 70 feet in the air. Image credit: Galen Oakes</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/14.jpg" alt="Burn">
+                        <p class="caption">Burn. Image credit: Art Gimbel</p>
+                    </div>
+                </div>
+                <div class="scroll-hint">→</div>
+            </div>
+        </section>
+        
+        <section class="project">
+            <h2>La Llorona Spanish Galleon <span class="meta">· 2012 · The Pier Group</span></h2>
+            <p>Full-scale Spanish Galleon ship replica wrecked upon the end of a 200 ft pier. The interior of the ship consisted of myriad rooms and passageways, all fully furnished. The ship's interior was filled with elaborate sculptures and artwork that depicted the legend of La Llorona, along with hammocks, block and tackle, barrels, and other period pieces.</p>
             
-            <img src="/images/17.jpg" alt="Dragons pictured at ground level.">
-            <p class="caption">Dragons pictured at ground level, complete with plumbing for flame throwers. Image credit: Aleksey Bochovsky</p>
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="/images/4.jpg" alt="La Llorona Spanish Galleon">
+                        <p class="caption">Image credit: Shay Harting, 2012</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/5.jpg" alt="Self, installing hull ribs holding screws in mouth">
+                        <p class="caption">Self, installing hull ribs holding screws in mouth</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/6.jpg" alt="Crew Photo">
+                        <p class="caption">Crew Photo</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/7.jpg" alt="La Llorona at night">
+                        <p class="caption">Image credit: Grant Kaye, Smithsonian Magazine</p>
+                    </div>
+                </div>
+                <div class="scroll-hint">→</div>
+            </div>
+        </section>
+        
+        <section class="project">
+            <h2>The Temple of Transition <span class="meta">· 2011 · International Arts Megacrew</span></h2>
+            <p>The Temple of Transition was 120-ft tall structure consisting of six outer temples surrounding a central temple, connected by intricate wooden bridges, with a design inspired by ancient cathedrals and Hindu temples. Participants left messages, mementos, and offerings symbolizing grief and loss. On the final night, the temple was solemnly and silently burned in a ceremony of collective catharsis. For two weeks, the temple held the world record for the largest temporary wooden structure.</p>
             
-            <img src="/images/18.jpg" alt="Main entrance at night">
-            <p class="caption">Self. Walking a giraffe? Nay, controlling tagline for the crane lift of the completed lotus during build. Image credit: Aleksey Bochovsky</p>
-            
-            <img src="/images/19.jpg" alt="Finishing the final lotus petal">
-            <p class="caption">Burn ceremony. Image credit: Wobserazzi</p>
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="/images/1.jpg" alt="The Temple of Transition at night">
+                        <p class="caption">Image credit: Bentley Meeker, 2011</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/2.jpg" alt="The Temple of Transition in the dust">
+                        <p class="caption">Image credit: Scott London</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/images/3.jpg" alt="The Temple of Transition burning">
+                        <p class="caption">Image credit: Reuters/Daily Mail</p>
+                    </div>
+                </div>
+                <div class="scroll-hint">→</div>
+            </div>
         </section>
         
         <div class="back">
             <a href="/">← Back to work</a>
         </div>
     </main>
+    
+    <!-- lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="caption-lightbox" id="lightbox-caption"></div>
+    </div>
+    
+    <script>
+        // open lightbox on image click
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxCaption = document.getElementById('lightbox-caption');
+                
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                
+                // get caption text from next sibling if exists
+                const caption = this.parentElement.querySelector('.caption');
+                if (caption) {
+                    lightboxCaption.textContent = caption.textContent;
+                    lightboxCaption.style.display = 'block';
+                } else {
+                    lightboxCaption.style.display = 'none';
+                }
+                
+                lightbox.classList.add('active');
+            });
+        });
+        
+        // close lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        
+        // close on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+        
+        // close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // hide scroll hint after scrolling
+        document.querySelectorAll('.gallery').forEach(gallery => {
+            gallery.addEventListener('scroll', function() {
+                if (this.scrollLeft > 10) {
+                    this.classList.add('scrolled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
