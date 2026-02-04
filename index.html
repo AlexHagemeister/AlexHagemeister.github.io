@@ -1,25 +1,260 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; color: #eae96f; -webkit-text-stroke: #eae96f}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; color: #eae96f; -webkit-text-stroke: #eae96f; min-height: 20.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Hagemeister</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #e5e5e5;
+            --fg-muted: #737373;
+            --accent: #c4a35a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 120px 0 80px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero .location {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+        
+        .hero .tagline {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--fg);
+            max-width: 480px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-top: 1px solid #1a1a1a;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--fg-muted);
+            margin-bottom: 32px;
+        }
+        
+        /* Work items */
+        .work-item {
+            margin-bottom: 40px;
+        }
+        
+        .work-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .work-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--fg);
+        }
+        
+        .work-item p {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .work-item .meta {
+            font-size: 0.8rem;
+            color: var(--fg-muted);
+            margin-top: 8px;
+            opacity: 0.7;
+        }
+        
+        /* Path section */
+        .path-list {
+            list-style: none;
+        }
+        
+        .path-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+        }
+        
+        .path-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Now section */
+        .now p {
+            font-size: 1.1rem;
+            color: var(--fg);
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 80px 0 120px;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+        
+        .contact a {
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px solid var(--fg-muted);
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+        
+        .contact a:hover {
+            border-color: var(--fg);
+        }
+        
+        /* Nav */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .nav a {
+            color: var(--fg-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: var(--fg);
+        }
+        
+        .nav .active {
+            color: var(--fg);
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 48px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h1&gt;Hello World&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">&lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
+    <nav class="nav">
+        <a href="/" class="active">Work</a>
+        <a href="/art/">Art</a>
+    </nav>
+    
+    <main class="container">
+        <header class="hero">
+            <h1>Alex Hagemeister</h1>
+            <p class="location">San Francisco</p>
+            <p class="tagline">I build things. Most of them interesting, some of them useful.</p>
+        </header>
+        
+        <section id="work">
+            <h2>Selected Work</h2>
+            
+            <div class="work-item">
+                <h3>SPLAT</h3>
+                <p>Built an AI tutor that actually understood course context. RAG architecture, production deployment, used by multiple Berkeley classes.</p>
+                <p class="meta">FastAPI · Pinecone · LangChain · 2024</p>
+            </div>
+            
+            <div class="work-item">
+                <h3>Highly Adaptive Ridge</h3>
+                <p>Kernel methods for high-dimensional regression. Spent two years on the statistics, proved convergence rates. Paper's on arXiv.</p>
+                <p class="meta">Python · scikit-learn · Research · 2024</p>
+            </div>
+            
+            <div class="work-item">
+                <h3>MCP Servers</h3>
+                <p>Experiments in automation infrastructure. Building tools that let systems talk to each other without human intermediaries.</p>
+                <p class="meta">TypeScript · Cloudflare Workers · Ongoing</p>
+            </div>
+        </section>
+        
+        <section id="path">
+            <h2>Before Berkeley</h2>
+            <ul class="path-list">
+                <li>Burning Man installations — 14 years, 60-person crews, structures that burned</li>
+                <li>Sushi bars — skipped the line, reached top tier in record time</li>
+                <li>Off-grid power systems — designed, built, managed infrastructure for agricultural operations</li>
+                <li>Post-hardcore band — national tours, self-booked, self-managed</li>
+            </ul>
+        </section>
+        
+        <section class="now">
+            <h2>Now</h2>
+            <p>Finishing a degree. Looking for interesting problems.</p>
+        </section>
+    </main>
+    
+    <footer class="contact">
+        <div class="container">
+            <a href="mailto:hagemeister.alex@gmail.com">hagemeister.alex@gmail.com</a>
+        </div>
+    </footer>
 </body>
 </html>
