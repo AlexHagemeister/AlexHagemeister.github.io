@@ -81,34 +81,16 @@
             margin-bottom: 32px;
         }
         
-        /* Work items */
-        .work-item {
-            margin-bottom: 40px;
-        }
-        
-        .work-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .work-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-            color: var(--fg);
-        }
-        
-        .work-item p {
+        /* About section */
+        #about p {
             color: var(--fg-muted);
             font-size: 0.95rem;
             line-height: 1.7;
+            margin-bottom: 24px;
         }
         
-        .work-item .meta {
-            font-size: 0.8rem;
-            color: var(--fg-muted);
-            margin-top: 8px;
-            opacity: 0.7;
+        #about p:last-child {
+            margin-bottom: 0;
         }
         
         /* Path section */
@@ -213,41 +195,30 @@
             <p class="tagline">I build things. Most of them interesting, some of them useful.</p>
         </header>
         
-        <section id="work">
-            <h2>Selected Work</h2>
+        <section id="about">
+            <h2>About</h2>
+            <p>I spent years building large-scale physical systems—temple installations at Burning Man, off-grid infrastructure, touring logistics. Coordinating 60-person crews, managing complex timelines, designing systems that had to work under extreme constraints. The work was about emergent order: getting complex groups to accomplish hard things.</p>
             
-            <div class="work-item">
-                <h3>SPLAT</h3>
-                <p>Built an AI tutor that actually understood course context. RAG architecture, production deployment, used by multiple Berkeley classes.</p>
-                <p class="meta">FastAPI · Pinecone · LangChain · 2024</p>
-            </div>
+            <p>I pivoted to software and machine learning because I updated on substrate. Bits scale better than atoms. The fundamental interest stayed the same—systems architecture, high-leverage coordination, tools that amplify capability. I'm drawn to problems where careful design creates order from complexity.</p>
             
-            <div class="work-item">
-                <h3>Highly Adaptive Ridge</h3>
-                <p>Kernel methods for high-dimensional regression. Spent two years on the statistics, proved convergence rates. Paper's on arXiv.</p>
-                <p class="meta">Python · scikit-learn · Research · 2024</p>
-            </div>
+            <p>Currently finishing an EECS degree at Berkeley. Recent work includes ML research (co-authored a paper on kernel methods with Prof. Mark van der Laan), education technology (RAG-based AI tutors for Berkeley courses), and automation infrastructure. I care about systems that coordinate complexity, both technical and social.</p>
             
-            <div class="work-item">
-                <h3>MCP Servers</h3>
-                <p>Experiments in automation infrastructure. Building tools that let systems talk to each other without human intermediaries.</p>
-                <p class="meta">TypeScript · Cloudflare Workers · Ongoing</p>
-            </div>
+            <p>I'm in an early discovery phase with complexity science—game theory, cybernetics, institutional design, multipolar traps. Understanding why certain configurations persist and others collapse. Not just abstract theory: I want to build frameworks that let groups make better collective decisions.</p>
         </section>
         
         <section id="path">
             <h2>Before Berkeley</h2>
             <ul class="path-list">
-                <li>Burning Man installations. 14 years, 60-person crews, structures that burned.</li>
-                <li>Sushi bars. Skipped the line, reached top tier in record time.</li>
-                <li>Off-grid power systems. Designed, built, managed infrastructure for agricultural operations.</li>
-                <li>Post-hardcore band. National tours, self-booked, self-managed.</li>
+                <li>Burning Man installations. Led teams building large-scale art that burned. Four major projects, national media coverage.</li>
+                <li>Off-grid infrastructure. Designed power and water systems for agricultural operations in Northern California.</li>
+                <li>Post-hardcore band. National touring, self-managed logistics and booking.</li>
+                <li>Sushi chef. Learned precision and speed under pressure.</li>
             </ul>
         </section>
         
         <section class="now">
             <h2>Now</h2>
-            <p>Finishing a degree. Looking for interesting problems.</p>
+            <p>Finishing EECS at Berkeley, graduating May 2026. Building tools for coordination and knowledge work. Interested in problems at the intersection of ML infrastructure, collective decision-making, and systems that help humans think better together.</p>
         </section>
     </main>
     
