@@ -14,7 +14,7 @@
         :root {
             --bg: #0a0a0a;
             --fg: #e5e5e5;
-            --fg-muted: #737373;
+            --fg-muted: #a3a3a3;
             --accent: #c4a35a;
         }
         
@@ -212,6 +212,33 @@
         
         .background-list li:last-child {
             border-bottom: none;
+        }
+        
+        #background p {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        #background p:last-child {
+            margin-bottom: 0;
+        }
+        
+        #background a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        #background a:hover {
+            border-color: var(--accent);
+        }
+        
+        #background strong {
+            color: var(--fg);
+            font-weight: 500;
         }
         
         /* Contact */
