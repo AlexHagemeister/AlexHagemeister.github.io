@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +13,16 @@
         :root {
             --bg: #0a0a0a;
             --fg: #e5e5e5;
-            --fg-muted: #737373;
+            --fg-muted: #a3a3a3;
             --accent: #c4a35a;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             background: var(--bg);
             color: var(--fg);
@@ -31,20 +33,20 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .container {
             max-width: 680px;
             margin: 0 auto;
             padding: 0 24px;
             width: 100%;
         }
-        
+
         .site-nav {
             padding: 32px 0;
             border-bottom: 1px solid #1a1a1a;
             text-align: center;
         }
-        
+
         .site-nav a {
             color: var(--fg);
             text-decoration: none;
@@ -54,31 +56,78 @@
             transition: color 0.2s;
             display: inline-block;
         }
-        
+
         .site-nav a:hover {
             color: var(--accent);
         }
-        
+
         .site-nav .active {
             color: var(--accent);
         }
-        
+
         main {
             padding: 80px 0;
             flex: 1;
         }
-        
+
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 400;
-            margin-bottom: 16px;
+            margin-bottom: 48px;
             letter-spacing: -0.02em;
         }
-        
-        .coming-soon {
+
+        .post-list {
+            list-style: none;
+        }
+
+        .post-item {
+            padding: 32px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .post-item:first-child {
+            padding-top: 0;
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .post-title a {
+            color: var(--fg);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .post-title a:hover {
+            color: var(--accent);
+        }
+
+        .post-date {
             color: var(--fg-muted);
-            font-size: 1.1rem;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        .post-description {
+            color: var(--fg-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -89,10 +138,20 @@
         <a href="/art/">Art</a>
         <a href="/blog/" class="active">Blog</a>
     </nav>
-    
+
     <main class="container">
         <h1>Blog</h1>
-        <p class="coming-soon">Coming soon.</p>
+        <ul class="post-list">
+            {% for post in site.posts %}
+            <li class="post-item">
+                <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                {% if post.description %}
+                <p class="post-description">{{ post.description }}</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
     </main>
 </body>
 </html>
