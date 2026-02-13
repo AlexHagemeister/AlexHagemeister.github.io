@@ -240,32 +240,50 @@
             border-color: var(--fg);
         }
         
-        /* Nav */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 24px;
-            display: flex;
-            gap: 24px;
-            align-items: center;
-            z-index: 100;
+        /* Nav - Site Navigation */
+        .site-nav {
+            padding: 32px 0;
+            border-bottom: 1px solid #1a1a1a;
+            text-align: center;
         }
         
-        .nav a {
+        .site-nav a {
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 20px;
+            margin: 0 8px;
+            transition: color 0.2s, background-color 0.2s;
+            display: inline-block;
+        }
+        
+        .site-nav a:hover {
+            color: var(--accent);
+        }
+        
+        .site-nav .active {
+            color: var(--accent);
+        }
+        
+        /* Links - External/Contact Links */
+        .links {
+            padding: 24px 0 32px;
+            text-align: center;
+        }
+        
+        .links a {
             color: var(--fg-muted);
             text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            margin: 0 12px;
+            font-size: 0.9rem;
+            transition: color 0.2s, border-color 0.2s;
         }
         
-        .nav a:hover {
+        .links a:hover {
             color: var(--fg);
-        }
-        
-        .nav .active {
-            color: var(--fg);
+            border-bottom-color: var(--fg-muted);
         }
         
         /* Responsive */
@@ -297,11 +315,6 @@
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="/" class="active">Work</a>
-        <a href="/art/">Art</a>
-    </nav>
-    
     <main class="container">
         <header class="hero">
             <div class="hero-image">
@@ -313,6 +326,13 @@
                 <p class="tagline">I build things. Most of them interesting, some of them useful.</p>
             </div>
         </header>
+        
+        <nav class="site-nav">
+            <a href="/" class="active">Work</a>
+            <a href="/projects/">Projects</a>
+            <a href="/art/">Art</a>
+            <a href="/blog/">Blog</a>
+        </nav>
         
         <div class="links">
             <a href="mailto:hagemeister.alex@gmail.com">Email</a>
@@ -339,17 +359,17 @@
             
             <div class="project">
                 <h3>Highly Adaptive Ridge</h3>
-                <p>Co-authored ML research paper with Prof. Mark van der Laan. Novel kernel ridge regression method achieving n<sup>-1/3</sup> dimension-free L2 convergence rate. <a href="https://arxiv.org/abs/2410.02680" target="_blank">arXiv:2410.02680</a></p>
+                <p>Co-authored ML research paper as sole undergraduate on Real World Methods, a graduate research team within UC Berkeley's Center for Targeted Machine Learning (led by Professors Schuler & van der Laan). Developed kernel ridge regression method achieving n<sup>-1/3</sup> dimension-free L2 convergence rate, empirically outperforming state-of-the-art on small tabular datasets. <a href="https://arxiv.org/abs/2410.02680" target="_blank">arXiv:2410.02680</a></p>
             </div>
             
             <div class="project">
-                <h3>SPLAT – AI Course Tutors</h3>
+                <h3>SPLAT – AI Course Tutors, UC Berkeley</h3>
                 <p>Lead developer on Berkeley-funded EdTech platform. Built full-stack RAG system (FastAPI, Docker, Pinecone, OpenAI, LangChain) including document processing pipeline, vector database infrastructure, and interactive frontend for personalized course tutoring.</p>
             </div>
             
             <div class="project">
-                <h3>Energy Monitoring System</h3>
-                <p>Judges' Choice Award at Berkeley T-PREP. Novel whole-home energy monitoring approach using mesh network of smart plugs.</p>
+                <h3>IT Service Desk Intern – Stanford Research Institute</h3>
+                <p>Summer 2021. Provided onsite technical support and system maintenance for SRI researchers. Network configuration and security, VPN and encryption management, system diagnostics. Processed 300+ service requests in 3 months.</p>
             </div>
         </section>
         

@@ -12,6 +12,7 @@
             --bg: #0a0a0a;
             --fg: #e5e5e5;
             --fg-muted: #737373;
+            --accent: #c4a35a;
         }
         
         * {
@@ -44,22 +45,25 @@
             display: flex;
             gap: 24px;
             align-items: center;
+            justify-content: center;
             z-index: 100;
             background: var(--bg);
         }
         
         .nav a {
-            color: var(--fg-muted);
+            color: var(--fg);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 1rem;
+            padding: 8px 20px;
+            transition: color 0.2s;
         }
         
         .nav a:hover {
-            color: var(--fg);
+            color: var(--accent);
         }
         
         .nav .active {
-            color: var(--fg);
+            color: var(--accent);
         }
         
         header {
@@ -290,7 +294,9 @@
 <body>
     <nav class="nav">
         <a href="/">Work</a>
+        <a href="/projects/">Projects</a>
         <a href="/art/" class="active">Art</a>
+        <a href="/blog/">Blog</a>
     </nav>
     
     <main class="container">
